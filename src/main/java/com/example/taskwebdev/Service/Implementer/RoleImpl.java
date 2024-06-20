@@ -16,13 +16,40 @@ public class RoleImpl implements RoleService {
     @Override
     public void saveData(RolePojo rolePojo) {
         Role role = new Role();
-        role.setRoleId(rolePojo.getRoleId());
+        role.setId(rolePojo.getId());
         role.setRoleName(rolePojo.getRoleName());
+
         roleRepo.save(role);
     }
     @Override
     public List<Role> getAll() {
         return roleRepo.findAll();
+    }
+
+    @Override
+    public void updateData(Long id, RolePojo rolePojo) {
+        Optional<Role> roleOptional = roleRepo.findById(id);
+        if (roleOptional.isPresent()) {
+            Role existingRole = roleOptional.get();
+            // Update the existing student with the data from studentPojo
+            updateStudentProperties(existingRole, rolePojo);
+            roleRepo.save(existingRole); // Save the updated student
+        } else {
+            // Handle the case where the student with the given ID does not exist
+            throw new IllegalArgumentException("Student with ID " + id + " not found");
+        }
+    }
+
+    // Helper method to update properties of Student based on StudentPojo
+    private void updateStudentProperties(Role role, RolePojo rolePojo) {
+
+        role.setId(rolePojo.getId());
+        role.setRoleName(rolePojo.getRoleName());
+
+
+        roleRepo.save(role);
+
+        // You may need to update other properties here
     }
     @Override
     public void deleteById(Integer id) {
@@ -31,5 +58,9 @@ public class RoleImpl implements RoleService {
     @Override
     public Optional<Role> findById(Integer id) {
         return roleRepo.findById(Long.valueOf(id));
+    }
+
+    public boolean existsById(Long id) {
+        return roleRepo.existsById(id);
     }
 }

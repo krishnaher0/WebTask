@@ -21,12 +21,12 @@ public class Book {
     @Column(name ="book_name",nullable = false,length = 100)
     private String userName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ground_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_books_ground_id"))
+    @ManyToOne
+    @JoinColumn
     private Ground ground;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_books_user_id"))
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn
     private User user;
 }
 
