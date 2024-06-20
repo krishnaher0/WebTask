@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RolePojo {
-    private Integer roleId;
+    private Integer Id;
     private String roleName;
 
 

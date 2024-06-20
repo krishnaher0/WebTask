@@ -1,6 +1,7 @@
 package com.example.taskwebdev.Entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Collection;
@@ -9,15 +10,16 @@ import java.util.Collection;
 
 @Table
 @Setter
+@Getter
 
 public class Role {
     @Id
-    private Integer roleId;
+    private Integer Id;
     @Column(name="role_name", nullable=false,length=100)
     private String roleName;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "roles_users",
             foreignKey = @ForeignKey(name = "FK_roles_rolesID"),
             joinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"),

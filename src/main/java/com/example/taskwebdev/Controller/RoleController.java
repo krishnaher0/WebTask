@@ -2,13 +2,18 @@ package com.example.taskwebdev.Controller;
 
 import com.example.taskwebdev.Entity.Book;
 import com.example.taskwebdev.Entity.Role;
+import com.example.taskwebdev.Pojo.GroundPojo;
 import com.example.taskwebdev.Pojo.RolePojo;
 import com.example.taskwebdev.Service.BookService;
-import com.example.taskwebdev.shared.GlobalApiResponse;
 
+import com.example.taskwebdev.Service.RoleService;
+import com.example.taskwebdev.shared.pojo.GlobalApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,16 +21,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RoleController {
 
-    private final BookService roleService;
+    private final RoleService roleService;
 
     @GetMapping("/get")
-    public GlobalApiResponse<Role> getData() {
+    public GlobalApiResponse<List<Role>> getData() {
         return GlobalApiResponse.
-                <Role>builder()
-                .data("saved")
+                <List<Role>>builder()
+                .data(roleService.getAll())
                 .statusCode(200)
                 .message("Data retrieved successfully!")
                 .build();
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable Integer id, @RequestBody RolePojo rolePojo) {
+        if (!roleService.existsById(id.longValue())) {
+            return new ResponseEntity<>("Students id" + id + " not found", HttpStatus.NOT_FOUND);
+        }
+
+        // Update the existing ground with the provided ID
+        roleService.updateData(id.longValue(), rolePojo);
+
+        return ResponseEntity.ok("Student with ID " + id + " updated successfully");
     }
 
     @PostMapping("/save")
@@ -34,7 +51,7 @@ public class RoleController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<Book> getData(@PathVariable Integer id) {
+    public Optional<Role> getData(@PathVariable Integer id) {
         return roleService.findById(id);
     }
 

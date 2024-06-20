@@ -10,6 +10,6 @@ import lombok.*;
 
 public class GlobalApiResponse<T> {
     private String message;
-    private String data;
+    private T data;
     private int statusCode;
 }
