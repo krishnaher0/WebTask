@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserPojo {
-    private Integer Id;
+    private Integer id;
     private String userName;
 }
