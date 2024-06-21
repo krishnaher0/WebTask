@@ -53,12 +53,12 @@ public class UserImpl implements UserService {
         // You may need to update other properties here
     }
     @Override
-    public void deleteById(Integer id) {
-        userRepo.deleteById(Long.valueOf(id));
+    public void deleteById(Long id) {
+        userRepo.deleteById(id);
     }
     @Override
-    public Optional<User> findById(Integer bookingId) {
-        return userRepo.findById(Long.valueOf(bookingId));
+    public Optional<User> findById(Long bookingId) {
+        return userRepo.findById(bookingId);
     }
 
     public boolean existsById(Long id) {

@@ -47,12 +47,12 @@ public class GroundController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<Ground> getData(@PathVariable Integer id) {
+    public Optional<Ground> getData(@PathVariable Long id) {
         return groundService.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         this.groundService.deleteById(id);
     }
 }

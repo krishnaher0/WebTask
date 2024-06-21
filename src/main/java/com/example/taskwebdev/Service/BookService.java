@@ -16,7 +16,7 @@ public interface BookService {
 
     void updateData(Long id,BookPojo bookPojo);
 
-    void deleteById(Integer id);
-    Optional<Book> findById(Integer id);
+    void deleteById(Long id);
+    Optional<Book> findById(Long id);
     boolean existsById(Long id);
 }

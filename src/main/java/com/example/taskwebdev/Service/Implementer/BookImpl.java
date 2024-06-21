@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,19 +28,18 @@ public class BookImpl implements BookService {
 
     @Override
     public void saveData(BookPojo bookPojo) {
-        User user = userRepo.findById(bookPojo.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        Ground ground = groundRepo.findById(bookPojo.getGroundId())
-                .orElseThrow(() -> new RuntimeException("Ground not found"));
         Book book = new Book();
+
         book.setBookingId(bookPojo.getBookingId());
-        System.out.println(bookPojo.getBookingId());
-        System.out.println(bookPojo.getGroundId());
+
         book.setUserName(bookPojo.getUserName());
-      book.setGround(ground);
-      book.setUser(user);
+        book.setGround(bookPojo.getGroundId());
+        book.setUser(bookPojo.getUserId());
+
         bookRepo.save(book);
+
     }
+
 
     @Override
     public List<Book> getAll() {
@@ -54,7 +54,7 @@ public class BookImpl implements BookService {
         if (bookOptional.isPresent()) {
             Book existingBook = bookOptional.get();
             // Update the existing student with the data from studentPojo
-            updateStudentProperties(existingBook, bookPojo);
+            updateBookProperties(existingBook, bookPojo);
             bookRepo.save(existingBook); // Save the updated student
         } else {
             // Handle the case where the student with the given ID does not exist
@@ -63,17 +63,14 @@ public class BookImpl implements BookService {
     }
 
     // Helper method to update properties of Student based on StudentPojo
-    private void updateStudentProperties(Book book, BookPojo bookPojo) {
-        User user = userRepo.findById(bookPojo.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        Ground ground = groundRepo.findById(bookPojo.getGroundId())
-                .orElseThrow(() -> new RuntimeException("Ground not found"));
+    private void updateBookProperties(Book book, BookPojo bookPojo) {
         book.setBookingId(bookPojo.getBookingId());
-        System.out.println(bookPojo.getBookingId());
-        System.out.println(bookPojo.getGroundId());
+
         book.setUserName(bookPojo.getUserName());
-        book.setGround(ground);
-        book.setUser(user);
+        book.setGround(bookPojo.getGroundId());
+        book.setUser(bookPojo.getUserId());
+
+        bookRepo.save(book);
 
 
 
@@ -82,13 +79,13 @@ public class BookImpl implements BookService {
     }
 
     @Override
-    public void deleteById(Integer id) {
-        bookRepo.deleteById(Long.valueOf(id));
+    public void deleteById(Long id) {
+        bookRepo.deleteById(id);
     }
 
     @Override
-    public Optional<Book> findById(Integer bookingId) {
-        return bookRepo.findById(Long.valueOf(bookingId));
+    public Optional<Book> findById(Long bookingId) {
+        return bookRepo.findById(bookingId);
     }
 
     @Override

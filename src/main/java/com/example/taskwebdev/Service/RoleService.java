@@ -17,7 +17,7 @@ public interface RoleService {
     List<Role> getAll();
     void updateData(Long id, RolePojo rolePojo);
 
-    void deleteById(Integer id);
-    Optional<Role> findById(Integer id);
+    void deleteById(Long id);
+    Optional<Role> findById(Long id);
     boolean existsById(Long id);
 }

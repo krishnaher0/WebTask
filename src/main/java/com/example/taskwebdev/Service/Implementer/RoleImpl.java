@@ -52,12 +52,12 @@ public class RoleImpl implements RoleService {
         // You may need to update other properties here
     }
     @Override
-    public void deleteById(Integer id) {
-        roleRepo.deleteById(Long.valueOf(id));
+    public void deleteById(Long id) {
+        roleRepo.deleteById(id);
     }
     @Override
-    public Optional<Role> findById(Integer id) {
-        return roleRepo.findById(Long.valueOf(id));
+    public Optional<Role> findById(Long id) {
+        return roleRepo.findById(id);
     }
 
     public boolean existsById(Long id) {

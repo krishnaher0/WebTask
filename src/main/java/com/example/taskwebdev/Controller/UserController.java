@@ -50,12 +50,12 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<User> getData(@PathVariable Integer id) {
+    public Optional<User> getData(@PathVariable Long id) {
         return userService.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         this.userService.deleteById(id);
     }
 }

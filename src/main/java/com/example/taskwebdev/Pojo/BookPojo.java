@@ -14,6 +14,6 @@ import lombok.Setter;
 public class BookPojo {
     private Integer bookingId;
     private String userName;
-    private Long groundId;
-    private Long userId;
+    private Ground groundId;
+    private User userId;
 }
