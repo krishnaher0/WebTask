@@ -55,13 +55,13 @@ public class GroundImpl implements GroundService {
     }
 
     @Override
-    public void deleteById(Integer id) {
-        groundRepo.deleteById(Long.valueOf(id));
+    public void deleteById(Long id) {
+        groundRepo.deleteById(id);
     }
 
     @Override
-    public Optional<Ground> findById(Integer id) {
-        return groundRepo.findById(Long.valueOf(id));
+    public Optional<Ground> findById(Long id) {
+        return groundRepo.findById(id);
     }
 
     public boolean existsById(Long id) {

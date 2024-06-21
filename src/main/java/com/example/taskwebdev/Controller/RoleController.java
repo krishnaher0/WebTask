@@ -51,12 +51,12 @@ public class RoleController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<Role> getData(@PathVariable Integer id) {
+    public Optional<Role> getData(@PathVariable Long id) {
         return roleService.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         this.roleService.deleteById(id);
     }
 }

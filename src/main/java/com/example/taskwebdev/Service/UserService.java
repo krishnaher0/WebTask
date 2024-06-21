@@ -15,7 +15,7 @@ public interface UserService {
     List<User> getAll();
     void updateData(Long id, UserPojo userPojo);
 
-    void deleteById(Integer id);
-    Optional<User> findById(Integer id);
+    void deleteById(Long id);
+    Optional<User> findById(Long id);
     boolean existsById(Long id);
 }

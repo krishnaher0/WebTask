@@ -15,9 +15,9 @@ import java.util.Optional;
 public interface GroundService {
     void saveData(GroundPojo groundpojo);
     List<Ground> getAll();
-    void deleteById(Integer id);
+    void deleteById(Long id);
     void updateData(Long id, GroundPojo groundPojo);
-    Optional<Ground> findById(Integer id);
+    Optional<Ground> findById(Long id);
     boolean existsById(Long id);
 
 }

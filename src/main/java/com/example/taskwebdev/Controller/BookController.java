@@ -51,12 +51,12 @@ public class BookController {
     }
 
     @GetMapping("/get/{id}")
-    public Optional<Book> getData(@PathVariable Integer id) {
+    public Optional<Book> getData(@PathVariable Long id) {
         return bookService.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         this.bookService.deleteById(id);
     }
 }
