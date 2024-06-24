@@ -37,6 +37,12 @@ function Sidebar() {
                                 Ground
                             </span>
                         </Link>
+                        <Link to="/user" className="flex items-center gap-3">
+                            <MdPeopleAlt className="text-2xl text-black"/>
+                            <span className="hidden sm:flex text-slate-600 hover:text-slate-400 cursor-pointer">
+                                User
+                            </span>
+                        </Link>
                     </div>
                 </div>
 

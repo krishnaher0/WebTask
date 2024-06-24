@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import './main.css';
 import BookingData from "./components/BookingData.jsx";
+import UserForm from "./components/UserForm.jsx";
 
 
 
@@ -23,6 +24,7 @@ function App() {
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/book" element={<BookingData />} />
                             <Route path="/ground" element={<GroundForm />} />
+                            <Route path="/user" element={<UserForm />} />
 
 
                         </Routes>
