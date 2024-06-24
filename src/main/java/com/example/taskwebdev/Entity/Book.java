@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="books_seq_gen")
+    @GeneratedValue(strategy = GenerationType.AUTO,generator="books_seq_gen")
     @SequenceGenerator(name="books_seq_gen",sequenceName="books_seq",allocationSize=1)
     @Id
     private Integer bookingId;

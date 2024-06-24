@@ -44,13 +44,9 @@ public class BookController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<GlobalApiResponse<Void>> save( @RequestBody BookPojo bookPojo) {
-        bookService.saveData(bookPojo);
-        GlobalApiResponse<Void> response = GlobalApiResponse.<Void>builder()
-                .statusCode(HttpStatus.CREATED.value())
-                .message("Book saved successfully!")
-                .build();
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public void save(@RequestBody BookPojo bookPojo) {
+
+        this.bookService.saveData(bookPojo);
     }
 
     @GetMapping("/get/{id}")
