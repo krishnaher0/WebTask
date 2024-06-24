@@ -23,10 +23,10 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
-    private Ground groundId;
+    private Ground ground;
 
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn
-    private User userId;
+    private User user;
 }
 

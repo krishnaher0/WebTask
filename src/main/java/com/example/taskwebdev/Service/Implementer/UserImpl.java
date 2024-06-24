@@ -6,6 +6,7 @@ import com.example.taskwebdev.Pojo.RolePojo;
 import com.example.taskwebdev.Pojo.UserPojo;
 import com.example.taskwebdev.Repo.UserRepo;
 import com.example.taskwebdev.Service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -16,10 +17,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserImpl implements UserService {
     private final UserRepo userRepo;
+    @Transactional
+    public void saveUser(User user) {
+        userRepo.save(user);
+    }
     @Override
     public void saveData(UserPojo userPojo) {
         User user = new User();
-        user.setId(userPojo.getId());
+user.setId(userPojo.getId());
         user.setUserName(userPojo.getUserName());
         userRepo.save(user);
     }
@@ -45,7 +50,7 @@ public class UserImpl implements UserService {
     // Helper method to update properties of Student based on StudentPojo
     private void updateStudentProperties(User user, UserPojo userPojo) {
 
-        user.setId(userPojo.getId());
+//        user.setId(userPojo.getId());
         user.setUserName(userPojo.getUserName());
 
         userRepo.save(user);

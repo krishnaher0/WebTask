@@ -46,21 +46,13 @@ public class BookImpl implements BookService {
 
     @Override
     public void saveData(BookPojo bookPojo) {
-        Book teacherAttendance = new Book();
-//        System.out.println("Attendance Date: " + teacherAttendancePojo.getDateNow());
-        teacherAttendance.setUserId(bookPojo.getUserId());
-        teacherAttendance.setGroundId(bookPojo.getGroundId());
-//        teacherAttendance.setIdentity(teacherAttendancePojo.getIdentity());
-        // Use the date from attendancePojo instead of always using LocalDate.now()
-        if (bookPojo.getBookingId() != null) {
-            teacherAttendance.setBookingId(bookPojo.getBookingId());
-        } else {
-            System.out.println("Please fill the booking id");
-        }
-        teacherAttendance.setUserName(bookPojo.getUserName());
-        System.out.println("Attendance before save: " + teacherAttendance);
-        bookRepo.save(teacherAttendance);
+        Book book = new Book();
+        book.setBookingId(bookPojo.getBookingId());
+        book.setUserName(bookPojo.getUserName());
+        book.setGround(bookPojo.getGround());
+        book.setUser(bookPojo.getUser());
 
+        bookRepo.save(book);
     }
 
 
@@ -76,32 +68,21 @@ public class BookImpl implements BookService {
         Optional<Book> teacherAOptional = bookRepo.findById(id);
         if (teacherAOptional.isPresent()) {
             Book existingTeacher = teacherAOptional.get();
-            // Update the existing student with the data from studentPojo
             updateStudentProperties(existingTeacher, bookPojo);
             bookRepo.save(existingTeacher); // Save the updated student
         } else {
-            // Handle the case where the student with the given ID does not exist
-            throw new IllegalArgumentException("Student with ID " + id + " not found");
+
+            throw new IllegalArgumentException("Booking with ID " + id + " not found");
         }
     }
+    private void updateStudentProperties(Book book, BookPojo bookPojo) {
 
-    // Helper method to update properties of Student based on StudentPojo
-    private void updateStudentProperties(Book teacherAttendance, BookPojo bookPojo) {
+        book.setUser(bookPojo.getUser());
+        book.setGround(bookPojo.getGround());
+        book.setUserName(bookPojo.getUserName());
+        System.out.println("Attendance before save: " + book);
+        bookRepo.save(book);
 
-        teacherAttendance.setUserId(bookPojo.getUserId());
-        teacherAttendance.setGroundId(bookPojo.getGroundId());
-//        teacherAttendance.setIdentity(teacherAttendancePojo.getIdentity());
-        // Use the date from attendancePojo instead of always using LocalDate.now()
-        if (bookPojo.getBookingId() != null) {
-            teacherAttendance.setBookingId(bookPojo.getBookingId());
-        } else {
-            System.out.println("Please fill the booking id");
-        }
-        teacherAttendance.setUserName(bookPojo.getUserName());
-        System.out.println("Attendance before save: " + teacherAttendance);
-        bookRepo.save(teacherAttendance);
-
-        // You may need to update other properties here
     }
 
 
