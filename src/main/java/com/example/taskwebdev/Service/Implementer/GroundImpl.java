@@ -46,7 +46,6 @@ public class GroundImpl implements GroundService {
     // Helper method to update properties of Student based on StudentPojo
     private void updateStudentProperties(Ground ground, GroundPojo groundPojo) {
 
-        ground.setId(groundPojo.getId());
         ground.setName(groundPojo.getName());
 
         groundRepo.save(ground);

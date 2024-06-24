@@ -16,7 +16,7 @@ public class RoleImpl implements RoleService {
     @Override
     public void saveData(RolePojo rolePojo) {
         Role role = new Role();
-        role.setId(rolePojo.getId());
+
         role.setRoleName(rolePojo.getRoleName());
 
         roleRepo.save(role);
@@ -43,7 +43,6 @@ public class RoleImpl implements RoleService {
     // Helper method to update properties of Student based on StudentPojo
     private void updateStudentProperties(Role role, RolePojo rolePojo) {
 
-        role.setId(rolePojo.getId());
         role.setRoleName(rolePojo.getRoleName());
 
 

@@ -38,16 +38,19 @@ public class BookController {
         if (!bookService.existsById(id.longValue())) {
             return new ResponseEntity<>("Students id" + id + " not found", HttpStatus.NOT_FOUND);
         }
-
-        // Update the existing ground with the provided ID
         bookService.updateData(id.longValue(), bookPojo);
 
         return ResponseEntity.ok("Student with ID " + id + " updated successfully");
     }
 
     @PostMapping("/save")
-    public void save(@RequestBody BookPojo bookPojo) {
-        this.bookService.saveData(bookPojo);
+    public ResponseEntity<GlobalApiResponse<Void>> save( @RequestBody BookPojo bookPojo) {
+        bookService.saveData(bookPojo);
+        GlobalApiResponse<Void> response = GlobalApiResponse.<Void>builder()
+                .statusCode(HttpStatus.CREATED.value())
+                .message("Book saved successfully!")
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/get/{id}")

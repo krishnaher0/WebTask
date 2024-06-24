@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BookForm = () => {
+const BookingData = () => {
     const [formData, setFormData] = useState({
         bookingId: null, // Update to use bookingId
         userName: '',
@@ -46,7 +46,7 @@ const BookForm = () => {
                 userId: '',
                 userDisplayName: ''
             });
-            fetchBooks(); // Fetch updated list of books after submission
+            await fetchBooks(); // Fetch updated list of books after submission
         } catch (error) {
             console.error('Error sending data', error);
         }
@@ -145,7 +145,7 @@ const BookForm = () => {
                         <h3 className="text-lg font-bold mb-2">{book.userName}</h3>
                         <p className="text-gray-700 mb-2">Ground ID: {book.ground.id}</p>
                         <p className="text-gray-700 mb-2">User ID: {book.user.id}</p>
-                        <p className="text-gray-700 mb-2">User Display Name: {book.user.userName}</p>
+                        <p className="text-gray-700 mb-2">User Display Name: {book.userName}</p>
                         <button
                             onClick={() => handleDelete(book.bookingId)}
                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2"
@@ -165,5 +165,5 @@ const BookForm = () => {
     );
 };
 
-export default BookForm;
+export default BookingData;
 

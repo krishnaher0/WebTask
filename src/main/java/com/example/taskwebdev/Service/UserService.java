@@ -12,10 +12,12 @@ import java.util.Optional;
 public interface UserService {
 
     void saveData(UserPojo userPojo);
+
     List<User> getAll();
     void updateData(Long id, UserPojo userPojo);
 
     void deleteById(Long id);
     Optional<User> findById(Long id);
     boolean existsById(Long id);
+
 }
