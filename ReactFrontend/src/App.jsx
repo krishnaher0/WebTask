@@ -17,6 +17,7 @@ function App() {
             <Router>
                 <div className="flex  h-screen bg-white dark:bg-zinc-200">
                     <section className="">
+
                         <Sidebar />
                     </section>
                     <section className="grow  overflow-auto">
